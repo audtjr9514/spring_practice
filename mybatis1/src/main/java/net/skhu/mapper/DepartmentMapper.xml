@@ -4,8 +4,16 @@
 
 <mapper namespace="net.skhu.mapper.DepartmentMapper">
 
-  <select id="findAll" resultType="Department">
-      SELECT * FROM Department
-  </select>
+	<cache flushInterval="5000" />
+
+	<select id="findAll" resultType="Department">
+		SELECT *, NOW() time FROM Department
+	</select>
+	
+	<update id="update">
+		UPDATE Department
+		SET departmentNAme = #{departmentName}
+		WHERE id = #{id}
+	</update>
 
 </mapper>
