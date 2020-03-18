@@ -1,6 +1,8 @@
 package net.skhu.dto;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable{
     int id;
     String studentNumber;
     String name;

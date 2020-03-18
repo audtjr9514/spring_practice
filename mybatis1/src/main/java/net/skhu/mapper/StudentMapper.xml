@@ -12,6 +12,10 @@
   <select id="findByStudentNumber" resultType="Student">
     SELECT * FROM Student WHERE studentNumber = #{studentNumber}
   </select>   
+  
+  <select id="findByDepartmentId" resultType="Student">
+  	SELECT * FROM Student WHERE departmentId = #{departmentId}
+  </select>
 
   <select id="findAll" resultType="Student">
     SELECT s.*, d.departmentName
