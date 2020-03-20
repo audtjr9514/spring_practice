@@ -12,12 +12,27 @@ import net.skhu.mapper.CourseMapper;
 @Controller
 @RequestMapping("/course")
 public class CourseController {
-	@Autowired CourseMapper CourseMapper;
+	@Autowired CourseMapper courseMapper;
 
-	@RequestMapping("list")
-	public String list(Model model) {
-		List<Course> courses = CourseMapper.findAll();
+	@RequestMapping("courseList1")
+	public String courseList(Model model) {
+		List<Course> courses = courseMapper.findAllWithDepartments();
 		model.addAttribute("courses", courses);
-		return "course/list";
+		return "course/courseList";
 	}
+
+	@RequestMapping("courseList2")
+	public String courseList2(Model model) {
+		List<Course> courses = courseMapper.findAllWithDepartmentsAndProfessors();
+		model.addAttribute("courses", courses);
+		return "course/courseList2";
+	}
+
+	@RequestMapping("courseList3")
+	public String courseList3(Model model) {
+		model.addAttribute("courses", courseMapper.findAllWithStudents());
+		return "course/courseList3";
+	}
+
+
 }

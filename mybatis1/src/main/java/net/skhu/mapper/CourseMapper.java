@@ -10,4 +10,6 @@ import net.skhu.dto.Course;
 public interface CourseMapper {
 	List<Course> findAll();
 	List<Course> findAllWithDepartments();
+	List<Course> findAllWithDepartmentsAndProfessors();
+	List<Course> findAllWithStudents();
 }

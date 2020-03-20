@@ -9,20 +9,59 @@
 		SELECT *, NOW() time FROM Course
 	</select>
 	
-	<select id="findAllWithDepartments" resultMap="resultMap1">
+	<select id="findAllWithDepartments" resultMap="resultmap1">
 		SELECT c.*, d.id departmentId, d.departmentName
-		FROM Course c LEFT JOIN Department d ON d.id = c.departmentId
+		FROM Course c LEFT JOIN Department d ON c.departmentId = d.id
 	</select>
 	
-	<resultMap id="resultMap1" type="Course">
+	<resultMap id="resultmap1" type="Course">
 		<id property="id" column="id" />
-		<result property = "courseName" column="courseName" />
-		<result property = "unit" column="unit" />
-		<result property = "professorId" column="profesdsorId" />
-		<collection property="departmenst" ofType="Department">
+		<result property="courseName" column="courseName" />
+		<result property="departmentId" column="departmentId" />
+		<association property="department" javaType="department">
 			<id property="id" column="departmentId" />
-			<result property="departmentName" column="departmentName" />
-		</collection>
+			<result property="departmentName" column="departmentName" /> 
+		</association>
 	</resultMap>
+	
+	<select id="findAllWithDepartmentsAndProfessors" resultMap="resultmap2">
+		SELECT c.*, d.id departmentId, d.departmentName, p.id professorId, p.professorName
+		FROM Course c 
+		JOIN Department d ON c.departmentId = d.id
+		JOIN Professor p ON c.professorId = p.id
+	</select>
+	
+	<resultMap id="resultmap2" type="Course">
+		<id property="id" column="id" />
+		<result property="courseName" column="courseName" />
+		<result property="departmentId" column="departmentId" />
+		<result property="professorId" column="professorId" />
+		<association property="department" javaType="Department">
+			<id property="id" column="departmentId" />
+			<result property="departmentName" column="departmentName" /> 
+		</association>
+		<association property="professor" javaType="Professor">
+			<id property="id" column="professorId" />
+			<result property="professorName" column="professorName" />
+		</association>
+	</resultMap>
+	
+	<select id="findAllWithStudents" resultMap="resultmap3">
+		SELECT r.courseId, c.courseName, s.id studentId, s.studentNumber, s.name, r.grade
+		from course c
+		join register r on c.id = r.courseId
+		join student s on r.studentId = s.id
+	</select>
+	
+	<resultMap id="resultmap3" type="Course">
+		<id property="id" column="courseId" />
+		<result property="courseName" column="courseName" />
+		<collection property="students" ofType="Student">
+			<id property="id" column="studentId" />
+			<result property="studentNumber" column="studentNumber" />
+			<result property="name" column="name" />
+		</collection>
+	</resultMap> 
+	
 
 </mapper>
