@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.skhu.dto.Department;
 import net.skhu.dto.Student;
-import net.skhu.mapper.CourseMapper;
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.StudentMapper;
 
@@ -19,7 +18,6 @@ import net.skhu.mapper.StudentMapper;
 public class MybatisController {
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired StudentMapper studentMapper;
-	@Autowired CourseMapper courseMapper;
 
 	@RequestMapping(value = "cacheTest", method = RequestMethod.GET)
 	public String cacheTest(Model model) {
@@ -51,5 +49,4 @@ public class MybatisController {
 		model.addAttribute("departments",departmentMapper.findAllWithStudents());
 		return "mybatis/departmentList";
 	}
-
 }

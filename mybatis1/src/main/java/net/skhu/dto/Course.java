@@ -10,9 +10,7 @@ public class Course {
 	int unit;
 	int professorId;
 	Date startDate;
-	Department department;
-	Professor professor;
-	List<Student> students;
+	List<Department> departmenst;
 
 	public int getId() {
 		return id;
@@ -62,28 +60,12 @@ public class Course {
 		this.startDate = startDate;
 	}
 
-	public Department getDepartment() {
-		return department;
+	public List<Department> getDepartmenst() {
+		return departmenst;
 	}
 
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
-
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
-
-	public List<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(List<Student> students) {
-		this.students = students;
+	public void setDepartmenst(List<Department> departmenst) {
+		this.departmenst = departmenst;
 	}
 
 }
