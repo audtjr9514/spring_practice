@@ -26,6 +26,7 @@
 		</collection>
 	</resultMap>
 	
+	
 	<update id="update">
 		UPDATE Department
 		SET departmentNAme = #{departmentName}

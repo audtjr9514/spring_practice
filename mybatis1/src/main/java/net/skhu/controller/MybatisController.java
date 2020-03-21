@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.skhu.dto.Department;
 import net.skhu.dto.Student;
+<<<<<<< HEAD
 import net.skhu.dto.User;
+=======
+import net.skhu.mapper.CourseMapper;
+>>>>>>> parent of 16e3c90... Revert "Mar20 - department, professor레코드와 함께 course테이블 조회, 강좌별 수강생 조"
 import net.skhu.mapper.DepartmentMapper;
 import net.skhu.mapper.StudentMapper;
 import net.skhu.mapper.UserMapper;
@@ -20,7 +24,11 @@ import net.skhu.mapper.UserMapper;
 public class MybatisController {
 	@Autowired DepartmentMapper departmentMapper;
 	@Autowired StudentMapper studentMapper;
+<<<<<<< HEAD
 	@Autowired UserMapper userMapper;
+=======
+	@Autowired CourseMapper courseMapper;
+>>>>>>> parent of 16e3c90... Revert "Mar20 - department, professor레코드와 함께 course테이블 조회, 강좌별 수강생 조"
 
 	@RequestMapping(value = "cacheTest", method = RequestMethod.GET)
 	public String cacheTest(Model model) {
@@ -53,6 +61,7 @@ public class MybatisController {
 		return "mybatis/departmentList";
 	}
 
+<<<<<<< HEAD
 	@RequestMapping("dynamicSQL")
 	public String dynamicSQL(Model model) {
 		//전체 학생 목록 출력 : list1
@@ -90,4 +99,6 @@ public class MybatisController {
 
 		return "mybatis/dynamicSQL";
 	}
+=======
+>>>>>>> parent of 16e3c90... Revert "Mar20 - department, professor레코드와 함께 course테이블 조회, 강좌별 수강생 조"
 }
