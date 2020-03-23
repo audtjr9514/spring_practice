@@ -1,11 +1,13 @@
 package net.skhu.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Employee {
@@ -14,9 +16,12 @@ public class Employee {
 	int id;
 	String name;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "departmentId")
 	Department department;
+
+	@OneToOne(mappedBy = "employee", fetch = FetchType.EAGER)
+	Address address;
 
 	public int getId() {
 		return id;
@@ -40,6 +45,14 @@ public class Employee {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 }

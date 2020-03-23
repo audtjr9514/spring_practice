@@ -32,4 +32,10 @@ public class APIController {
 	public List<Department> departments(){
 		return departmentRepository.findAll();
 	}
+	
+	@RequestMapping("department/{id}/employees")
+	public List<Employee> departmentEmployees(@PathVariable("id") int id){
+		Department department = departmentRepository.findById(id).get();
+		return department.getEmployees();
+	}
 }
