@@ -14,7 +14,7 @@ import lombok.Data;
 @Entity
 public class Student {
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	
 	String name;
