@@ -7,6 +7,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import net.skhu.domain.Article;
 import net.skhu.model.Option;
@@ -38,4 +41,11 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>{
 	public Page<Article> findByBoardIdAndUserName(int boardId, String name, Pageable pageable);
 	public Page<Article> findByBoardIdAndTitleContains(int boardId, String title, Pageable pageable);
 	public Page<Article> findByBoardIdAndBodyContains(int boardId, String body, Pageable pageable);
-}
+	
+	@Query("SELECT MAX(a.no) FROM Article a WHERE a.board.id = ?1")
+	public int findMaxNo(int boardId);
+	
+	@Modifying
+	@Query("UPDATE Article SET title=:title, body=:body, writeTime=CURRENT_TIMESTAMP() WHERE id=:id")
+	public void update(@Param("id") int id, @Param("title") String title, @Param("body") String body);
+	}

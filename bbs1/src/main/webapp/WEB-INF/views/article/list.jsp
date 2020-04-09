@@ -29,7 +29,7 @@
 			<span>순서:</span>
 			<form:select path="ob" class="form-control autosubmit"
 				itemValue="value" itemLabel="label" items="${ orderBy }" />
-			<form:select path="sb" class="form-control ml20" itemValue="value"
+			<form:select path="sb" class="form-control ml30" itemValue="value"
 				itemLabel="label" items="${ searchBy }" />
 			<form:input path="st" class="form-control" placeholder="검색문자열" />
 			<button type="submit" class="btn btn-default">
@@ -40,13 +40,16 @@
 					class="glyphicon glyphicon-ban-circle"></i> 검색취소
 				</a>
 			</c:if>
+			<span class="ml30">페이지 크기:</span>
+			<form:select path="sz" class="form-control autosubmit">
+				<form:option value="10" />
+				<form:option value="15" />
+				<form:option value="30" />
+			</form:select>
 			<div class="pull-right">
-				<span>페이지 크기:</span>
-				<form:select path="sz" class="form-control autosubmit">
-					<form:option value="10" />
-					<form:option value="15" />
-					<form:option value="30" />
-				</form:select>
+				<a class="btn btn-primary" href="create?${pagination.queryString}">
+					<i class="glyphicon glyphicon-plus"></i> 새글작성
+				</a>
 			</div>
 		</form:form>
 		<table id="articles" class="table table-bordered">
@@ -74,5 +77,4 @@
 			recordCount="${ pagination.recordCount }" queryStringName="pg" />
 	</div>
 </body>
-
 </html>
