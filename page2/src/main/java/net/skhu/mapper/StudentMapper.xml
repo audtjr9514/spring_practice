@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.mapper.StudentMapper">
+
+	<select id="findAll" resultMap="findAll_resultMap">
+		<bind name="start" value="(pg-1) * sz" />
+		SELECT s.*, d.departmentName
+		FROM student s LEFT JOIN department d ON s.departmentId = d.id
+		WHERE #{di} = 0 OR #{di} = s.departmentId
+		ORDER BY s.studentNumber
+		LIMIT #{start}, #{sz}
+	</select>
+	
+	<resultMap type="Student" id="findAll_resultMap">
+		<id property="id" column="id" />
+		<result property="studentNo" column="studentNumber" />
+		<result property="name" column="name" />
+		<result property="year" column="year" />
+		<association property="department" javaType="Department">
+			<id property="id" column="departmentId" />
+			<result property="name" column="departmentName" />
+		</association>
+	</resultMap>
+	
+	<select id="count" resultType="int">
+		SELECT COUNT(id) FROM student s
+		WHERE #{di} = 0 OR #{di} = s.departmentId
+	</select>
+</mapper>
